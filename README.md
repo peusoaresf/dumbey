@@ -1,6 +1,6 @@
-# Java Dumbey Agent
+# Dumbey
 
-Repo born from the ["Build Your own Claude Code"](https://codecrafters.io/challenges/claude-code) CodeCrafters challenge.
+Repo born from the ["Build Your own Claude Code"](https://codecrafters.io/challenges/claude-code) CodeCrafters challenge, Dumbey is a Java harness for LLM models... a not-so-bright one.
 
 Eventually, after getting to the end of the challenge and having the agent do some basic things over CLI commands, I decided (for some god knows why reason) to add a Swing UI interface to it (maybe I felt nostalgic for having worked with it back in 2015-2017).
 
@@ -12,7 +12,7 @@ Eventually, after getting to the end of the challenge and having the agent do so
 
 3. Run `make run`
 
-4. Play around with the worst LLM agent ever!
+4. Play around with.. an LLM agent of sorts!
 
 ## Shortcomings / TODOs
 
@@ -33,7 +33,7 @@ logger.info(reply);
 and it would be called like:
 
 ```
-java -jar target/java-dumbey-agent.jar -m "gemma-4-e2b" -p "how many tools do you have available?"
+java -jar target/dumbey.jar -m "gemma-4-e2b" -p "how many tools do you have available?"
 ```
 
 But tbh I never gave it too much attention (moved over to a terminalUI based agent called `clam`)... so, documenting this just in case, but might as well enjoy the weird fact of having a Swing Agent.
