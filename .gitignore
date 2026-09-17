@@ -1,5 +1,5 @@
 *.jar
 target/
 .idea/
-.mvn
+.mvn/wrapper/*.jar
 .env
