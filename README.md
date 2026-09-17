@@ -18,7 +18,3 @@ Eventually, after getting to the end of the challenge and having the agent do so
 3. Run `make run`
 
 4. Play around with.. an LLM agent of sorts!
-
-## Shortcomings / TODOs
-
-1. For some reason, after plugging the gemma model, a simple 'Hi' prompt is enough to send the agent in a loop that never ends with a proper reply (looking at the logs it doesnt seem a problem in the model reasoning, more in a 'code detecting the end' problem);
