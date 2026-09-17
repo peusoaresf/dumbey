@@ -30,6 +30,11 @@ public class ChatContainer extends JScrollPane {
     private void addMessage(String actor, String message) {
         messages.addElement(" ");
         messages.addElement(actor + ": " + message);
+        scrollToBottom();
+    }
+
+    private void scrollToBottom() {
+        this.validate();
         this.getVerticalScrollBar().setValue(this.getVerticalScrollBar().getMaximum());
     }
 }
