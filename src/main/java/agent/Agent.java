@@ -1,5 +1,8 @@
 package agent;
 
+import java.util.List;
+import java.util.function.Consumer;
+
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
 import com.openai.models.chat.completions.ChatCompletion;
@@ -8,11 +11,9 @@ import com.openai.models.chat.completions.ChatCompletionMessageFunctionToolCall;
 import com.openai.models.chat.completions.ChatCompletionMessageToolCall;
 
 import agent.Agent.Reply;
+import tools.base.Tool;
 import tools.base.ToolsRegistry;
 import utils.Logger;
-
-import java.util.List;
-import java.util.function.Consumer;
 
 public class Agent {
 
@@ -30,7 +31,7 @@ public class Agent {
         this.contextBuilder = ChatCompletionCreateParams.builder()
             .model(model);
 
-        for (Class<?> tool : ToolsRegistry.getAll()) {
+        for (Class<? extends Tool> tool : ToolsRegistry.getAll()) {
             contextBuilder.addTool(tool);
         }
     }

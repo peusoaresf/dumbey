@@ -1,8 +1,9 @@
+import java.util.concurrent.ExecutionException;
+
 import agent.Agent;
 import gui.GUI;
 
 import javax.swing.*;
-import java.awt.*;
 
 void main() {
     var gui = new GUI();
@@ -28,7 +29,7 @@ void main() {
 
             try {
                 gui.addAgentReply(get());
-            } catch (Exception e) {
+            } catch (InterruptedException | ExecutionException e) {
                 gui.addError(e.getMessage());
             }
         }

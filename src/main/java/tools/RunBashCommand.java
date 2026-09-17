@@ -1,11 +1,12 @@
 package tools;
 
-import com.fasterxml.jackson.annotation.JsonClassDescription;
-import com.fasterxml.jackson.annotation.JsonPropertyDescription;
-import tools.base.Tool;
-
 import java.io.BufferedReader;
 import java.io.IOException;
+
+import com.fasterxml.jackson.annotation.JsonClassDescription;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+
+import tools.base.Tool;
 
 @JsonClassDescription("Execute a shell command")
 public class RunBashCommand implements Tool {
@@ -13,6 +14,7 @@ public class RunBashCommand implements Tool {
     @JsonPropertyDescription("The command to execute")
     public String command;
 
+    @Override
     public String execute() {
         try {
             Process process = new ProcessBuilder("/bin/sh", "-c", command)
