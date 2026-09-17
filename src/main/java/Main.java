@@ -1,9 +1,10 @@
 import java.util.concurrent.ExecutionException;
 
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
+
 import agent.Agent;
 import gui.GUI;
-
-import javax.swing.*;
 
 void main() {
     var gui = new GUI();
@@ -17,9 +18,15 @@ void main() {
     gui.setOnPromptSubmitted(prompt -> (new SwingWorker<String, Void>() {
         @Override
         protected String doInBackground() {
-            agent.setToolCallSubscriber(gui::addAgentReply); // TODO: no idea why I setting this outside worker makes UI behave weirdly
+            agent.setToolCallSubscriber(msg -> SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    gui.addAgentReply(msg);
+                }
+            }));
 
             gui.setProcessing(true);
+
             return agent.prompt(prompt);
         }
 
