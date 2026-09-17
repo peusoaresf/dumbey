@@ -1,6 +1,8 @@
 package gui;
 
-import javax.swing.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 public class ChatContainer extends JScrollPane {
     private final DefaultListModel<String> messages = new DefaultListModel<>() {{

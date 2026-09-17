@@ -1,10 +1,11 @@
 package gui;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.function.Consumer;
+
+import javax.swing.JFrame;
 
 public class GUI extends JFrame {
 

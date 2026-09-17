@@ -9,8 +9,8 @@ void main() {
     var gui = new GUI();
 
     var agent = new Agent(
-        System.getenv("BASE_URL"), 
-        System.getenv("MODEL_NAME"), 
+        System.getenv("BASE_URL"),
+        System.getenv("MODEL_NAME"),
         System.getenv("API_KEY")
     );
 

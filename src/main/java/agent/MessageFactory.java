@@ -1,11 +1,11 @@
 package agent;
 
+import java.util.List;
+
 import com.openai.models.chat.completions.ChatCompletionAssistantMessageParam;
 import com.openai.models.chat.completions.ChatCompletionMessageToolCall;
 import com.openai.models.chat.completions.ChatCompletionToolMessageParam;
 import com.openai.models.chat.completions.ChatCompletionUserMessageParam;
-
-import java.util.List;
 
 public class MessageFactory {
     public static ChatCompletionUserMessageParam user(String prompt) {

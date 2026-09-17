@@ -1,9 +1,12 @@
 package gui;
 
-import javax.swing.*;
+import java.util.function.Consumer;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.util.function.Consumer;
 
 public class InputContainer extends JPanel {
     private boolean isProcessing = false;

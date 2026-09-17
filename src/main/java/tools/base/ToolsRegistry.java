@@ -14,7 +14,7 @@ public class ToolsRegistry {
         put(WriteFile.class.getSimpleName(), WriteFile.class);
         put(RunBashCommand.class.getSimpleName(), RunBashCommand.class);
     }};
-    
+
     public static Class<Tool> get(String toolName) {
         if (!registry.containsKey(toolName)) {
             throw new IllegalArgumentException("Unknown tool: " + toolName);
