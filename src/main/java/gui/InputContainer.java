@@ -1,5 +1,8 @@
 package gui;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.function.Consumer;
 
 import javax.swing.JButton;
@@ -11,40 +14,24 @@ import javax.swing.event.DocumentListener;
 public class InputContainer extends JPanel {
     private boolean isProcessing = false;
 
-    private final JTextArea textArea = new JTextArea(10, 50);
-    private final JButton button = new JButton("Submit");
+    private final PromptArea textArea = new PromptArea();
+    private final SubmitButton button = new SubmitButton();
 
     public InputContainer() {
-        button.setSize(100, 50);
+        this.setLayout(new GridBagLayout());
+
         button.setEnabled(false);
 
-        this.add(textArea);
-        this.add(button);
+        this.add(textArea, textArea.getConstraints());
+        this.add(button, button.getConstraints());
 
-        textArea.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                handler();
+        textArea.setOnValueChanged(() -> {
+            if (isProcessing) {
+                button.setEnabled(false);
+                return;
             }
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                handler();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                handler();
-            }
-
-            private void handler() {
-                if (isProcessing) {
-                    button.setEnabled(false);
-                    return;
-                }
-
-                button.setEnabled(textArea.getText() != null && !textArea.getText().isEmpty() && !textArea.getText().isBlank());
-            }
+            button.setEnabled(textArea.isFilled());
         });
     }
 
@@ -65,5 +52,62 @@ public class InputContainer extends JPanel {
             textArea.setText("");
             handler.accept(prompt);
         });
+    }
+
+    private static class PromptArea extends JTextArea {
+        private final GridBagConstraints constraints = new GridBagConstraints();
+
+        public PromptArea() {
+            constraints.gridx = 0;
+            constraints.gridy = 0;
+            constraints.fill = GridBagConstraints.BOTH;
+            constraints.weightx = 1;
+            constraints.weighty = 1;
+            constraints.insets = new Insets(20, 20, 20, 10);
+        }
+
+        public boolean isFilled() {
+            return getText() != null && !getText().isEmpty() && !getText().isBlank();
+        }
+
+        public void setOnValueChanged(Runnable handler) {
+            this.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    handler.run();
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    handler.run();
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    handler.run();
+                }
+            });
+        }
+
+        public GridBagConstraints getConstraints() {
+            return this.constraints;
+        }
+    }
+
+    private static class SubmitButton extends JButton {
+        private final GridBagConstraints constraints = new GridBagConstraints();
+
+        public SubmitButton() {
+            this.setText("Submit");
+
+            constraints.gridx = 0;
+            constraints.gridy = 1;
+            constraints.ipady = 0;
+            constraints.insets = new Insets(0, 0, 20, 0);
+        }
+
+        public GridBagConstraints getConstraints() {
+            return this.constraints;
+        }
     }
 }
