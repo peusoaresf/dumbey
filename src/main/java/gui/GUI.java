@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 public class GUI extends JFrame {
 
     private final MessagesContainer messagesContainer = new MessagesContainer();
-    private final InputContainer inputContainer = new InputContainer();
+    private final PromptContainer promptContainer = new PromptContainer();
 
     public GUI() {
         super("My app");
@@ -19,7 +19,7 @@ public class GUI extends JFrame {
         this.setLayout(new GridLayout(2, 1));
 
         this.add(messagesContainer);
-        this.add(inputContainer);
+        this.add(promptContainer);
 
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -33,7 +33,7 @@ public class GUI extends JFrame {
     }
 
     public void setProcessing(boolean isProcessing) {
-        inputContainer.setProcessing(isProcessing);
+        promptContainer.setProcessing(isProcessing);
     }
 
     public void addError(String error) {
@@ -45,7 +45,7 @@ public class GUI extends JFrame {
     }
 
     public void setOnPromptSubmitted(Consumer<String> handler) {
-        inputContainer.setOnPromptSubmitted(prompt -> {
+        promptContainer.setOnPromptSubmitted(prompt -> {
             messagesContainer.addUserPrompt(prompt);
 
             handler.accept(prompt);

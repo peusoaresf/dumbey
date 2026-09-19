@@ -11,13 +11,13 @@ import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class InputContainer extends JPanel {
+public class PromptContainer extends JPanel {
     private boolean isProcessing = false;
 
     private final PromptArea textArea = new PromptArea();
     private final SubmitButton button = new SubmitButton();
 
-    public InputContainer() {
+    public PromptContainer() {
         this.setLayout(new GridBagLayout());
 
         button.setEnabled(false);
