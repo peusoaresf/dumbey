@@ -13,7 +13,7 @@ public class GUI extends JFrame {
     private final PromptContainer promptContainer = new PromptContainer();
 
     public GUI() {
-        super("My app");
+        super("Dumbey");
 
         this.setSize(640, 480);
         this.setLayout(new GridLayout(2, 1));
