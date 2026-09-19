@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 public class GUI extends JFrame {
 
-    private final ChatContainer chatContainer = new ChatContainer();
+    private final MessagesContainer messagesContainer = new MessagesContainer();
     private final InputContainer inputContainer = new InputContainer();
 
     public GUI() {
@@ -18,7 +18,7 @@ public class GUI extends JFrame {
         this.setSize(640, 480);
         this.setLayout(new GridLayout(2, 1));
 
-        this.add(chatContainer);
+        this.add(messagesContainer);
         this.add(inputContainer);
 
         this.addWindowListener(new WindowAdapter() {
@@ -37,16 +37,16 @@ public class GUI extends JFrame {
     }
 
     public void addError(String error) {
-        this.chatContainer.addError(error);
+        this.messagesContainer.addError(error);
     }
 
     public void addAgentReply(String reply) {
-        this.chatContainer.addAgentReply(reply);
+        this.messagesContainer.addAgentReply(reply);
     }
 
     public void setOnPromptSubmitted(Consumer<String> handler) {
         inputContainer.setOnPromptSubmitted(prompt -> {
-            chatContainer.addUserPrompt(prompt);
+            messagesContainer.addUserPrompt(prompt);
 
             handler.accept(prompt);
         });

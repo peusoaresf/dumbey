@@ -4,10 +4,10 @@ import java.awt.*;
 
 import javax.swing.*;
 
-public class ChatContainer extends JScrollPane {
+public class MessagesContainer extends JScrollPane {
     private final MessagesPanel messages = new MessagesPanel();
 
-    public ChatContainer() {
+    public MessagesContainer() {
         super();
 
         this.setViewportView(messages);
