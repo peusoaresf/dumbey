@@ -8,11 +8,11 @@ public class Logger {
             return;
         }
 
-        System.out.println(message);
+        IO.println(message);
     }
 
     public void info(String message) {
-        System.out.println(message);
+        IO.println(message);
     }
 
     enum Level { DEBUG, INFO }

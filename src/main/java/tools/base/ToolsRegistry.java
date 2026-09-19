@@ -15,12 +15,12 @@ public class ToolsRegistry {
         put(RunBashCommand.class.getSimpleName(), RunBashCommand.class);
     }};
 
-    public static Class<Tool> get(String toolName) {
+    public static Class<? extends Tool> get(String toolName) {
         if (!registry.containsKey(toolName)) {
             throw new IllegalArgumentException("Unknown tool: " + toolName);
         }
 
-        return (Class<Tool>) registry.get(toolName);
+        return registry.get(toolName);
     }
 
     public static Collection<Class<? extends Tool>> getAll() {

@@ -1,5 +1,3 @@
-import java.util.concurrent.ExecutionException;
-
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
@@ -18,12 +16,7 @@ void main() {
     gui.setOnPromptSubmitted(prompt -> (new SwingWorker<String, Void>() {
         @Override
         protected String doInBackground() {
-            agent.setToolCallSubscriber(msg -> SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    gui.addAgentReply(msg);
-                }
-            }));
+            agent.setToolCallSubscriber(msg -> SwingUtilities.invokeLater(() -> gui.addAgentReply(msg)));
 
             gui.setProcessing(true);
 

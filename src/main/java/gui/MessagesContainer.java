@@ -32,9 +32,7 @@ public class MessagesContainer extends JScrollPane {
 
     private void scrollToBottom() {
         this.validate();
-        SwingUtilities.invokeLater(() -> {
-            this.getVerticalScrollBar().setValue(this.getVerticalScrollBar().getMaximum());
-        });
+        SwingUtilities.invokeLater(() -> this.getVerticalScrollBar().setValue(this.getVerticalScrollBar().getMaximum()));
     }
 
     private static class MessageText extends JTextArea {
