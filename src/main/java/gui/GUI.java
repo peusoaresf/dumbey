@@ -5,10 +5,16 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.function.Consumer;
 
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+
+import tools.base.ToolsRegistry;
 
 public class GUI extends JFrame {
 
+    private final MenuBar menuBar = new MenuBar();
     private final MessagesContainer messagesContainer = new MessagesContainer();
     private final PromptContainer promptContainer = new PromptContainer();
 
@@ -18,6 +24,7 @@ public class GUI extends JFrame {
         this.setSize(640, 480);
         this.setLayout(new GridLayout(2, 1));
 
+        this.setJMenuBar(menuBar);
         this.add(messagesContainer);
         this.add(promptContainer);
 

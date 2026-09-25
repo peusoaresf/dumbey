@@ -1,5 +1,6 @@
 package agent;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -10,8 +11,8 @@ import com.openai.models.chat.completions.ChatCompletionCreateParams;
 import com.openai.models.chat.completions.ChatCompletionMessageFunctionToolCall;
 import com.openai.models.chat.completions.ChatCompletionMessageToolCall;
 
-import agent.Agent.Reply;
 import tools.base.Tool;
+import tools.base.ToolSlot;
 import tools.base.ToolsRegistry;
 import utils.Logger;
 
@@ -30,15 +31,12 @@ public class Agent {
 
         this.contextBuilder = ChatCompletionCreateParams.builder()
             .model(model);
-
-        for (Class<? extends Tool> tool : ToolsRegistry.getAll()) {
-            contextBuilder.addTool(tool);
-        }
     }
 
     public String prompt(String prompt) {
         notifySubscriber("Thinking...");
 
+        refreshTools();
         this.contextBuilder.addMessage(MessageFactory.user(prompt));
 
         int iterations = 0;
@@ -58,6 +56,14 @@ public class Agent {
         }
 
         return "I have reached the max number of iterations and I am unable to come to an answer.";
+    }
+
+    public void refreshTools() {
+        contextBuilder.tools(Collections.emptyList());
+
+        for (ToolSlot slot : ToolsRegistry.getActiveSlots()) {
+            contextBuilder.addTool(slot.getTool());
+        }
     }
 
     private Reply reason() {
@@ -95,7 +101,7 @@ public class Agent {
 
         notifySubscriber("Let me call the [" + fn.name() + "] tool.");
 
-        String result = fn.arguments(ToolsRegistry.get(fn.name())).execute();
+        String result = fn.arguments(ToolsRegistry.getTool(fn.name())).execute();
 
         logger.debug("Tool [" + fn.name() + "] output: <<\n\n" + result + "\n\n>>");
 
