@@ -9,7 +9,6 @@ import javax.swing.*;
 
 public class GUI extends JFrame {
 
-    private final MenuBar menuBar = new MenuBar();
     private final MessagesContainer messagesContainer = new MessagesContainer();
     private final PromptContainer promptContainer = new PromptContainer();
 
@@ -17,7 +16,6 @@ public class GUI extends JFrame {
         super("Dumbey");
 
         this.setSize(1024, 768);
-        this.setJMenuBar(menuBar);
 
         this.add(
             mainView(
