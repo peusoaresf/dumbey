@@ -5,12 +5,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.function.Consumer;
 
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-
-import tools.base.ToolsRegistry;
 
 public class GUI extends JFrame {
 
@@ -21,7 +16,7 @@ public class GUI extends JFrame {
     public GUI() {
         super("Dumbey");
 
-        this.setSize(640, 480);
+        this.setSize(1024, 768);
         this.setLayout(new GridLayout(2, 1));
 
         this.setJMenuBar(menuBar);

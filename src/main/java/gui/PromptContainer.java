@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.function.Consumer;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -14,6 +15,7 @@ import javax.swing.event.DocumentListener;
 public class PromptContainer extends JPanel {
     private boolean isProcessing = false;
 
+    private final ToolsBar toolsBar = new ToolsBar();
     private final PromptArea textArea = new PromptArea();
     private final SubmitButton button = new SubmitButton();
 
@@ -22,6 +24,7 @@ public class PromptContainer extends JPanel {
 
         button.setEnabled(false);
 
+        this.add(toolsBar, toolsBar.getConstraints());
         this.add(textArea, textArea.getConstraints());
         this.add(button, button.getConstraints());
 
@@ -58,12 +61,18 @@ public class PromptContainer extends JPanel {
         private final GridBagConstraints constraints = new GridBagConstraints();
 
         public PromptArea() {
+            this.setBorder(
+                BorderFactory.createCompoundBorder(
+                    BorderFactory.createRaisedBevelBorder(),
+                    BorderFactory.createLoweredBevelBorder()
+                )
+            );
             constraints.gridx = 0;
-            constraints.gridy = 0;
+            constraints.gridy = 1;
             constraints.fill = GridBagConstraints.BOTH;
             constraints.weightx = 1;
             constraints.weighty = 1;
-            constraints.insets = new Insets(20, 20, 20, 10);
+            constraints.insets = new Insets(1, 1, 5, 1);
         }
 
         public boolean isFilled() {
@@ -101,9 +110,9 @@ public class PromptContainer extends JPanel {
             this.setText("Submit");
 
             constraints.gridx = 0;
-            constraints.gridy = 1;
+            constraints.gridy = 2;
             constraints.ipady = 0;
-            constraints.insets = new Insets(0, 0, 20, 0);
+            constraints.insets = new Insets(0, 0, 5, 0);
         }
 
         public GridBagConstraints getConstraints() {

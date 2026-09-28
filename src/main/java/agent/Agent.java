@@ -11,7 +11,6 @@ import com.openai.models.chat.completions.ChatCompletionCreateParams;
 import com.openai.models.chat.completions.ChatCompletionMessageFunctionToolCall;
 import com.openai.models.chat.completions.ChatCompletionMessageToolCall;
 
-import tools.base.Tool;
 import tools.base.ToolSlot;
 import tools.base.ToolsRegistry;
 import utils.Logger;

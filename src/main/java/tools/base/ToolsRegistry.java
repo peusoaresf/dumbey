@@ -1,7 +1,6 @@
 package tools.base;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import tools.ReadFile;
 import tools.RunBashCommand;
