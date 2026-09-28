@@ -1,7 +1,3 @@
-good references for layout
-https://stackoverflow.com/questions/10556034/aligning-panels-with-gridbaglayout
-
-
 # Dumbey
 
 Repo born from the ["Build Your own Claude Code"](https://codecrafters.io/challenges/claude-code) CodeCrafters challenge, Dumbey is a Java harness for LLM models... a not-so-bright one.
