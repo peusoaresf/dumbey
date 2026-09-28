@@ -67,6 +67,9 @@ public class PromptContainer extends JPanel {
                     BorderFactory.createLoweredBevelBorder()
                 )
             );
+            this.setLineWrap(true);
+            this.setWrapStyleWord(true);
+
             constraints.gridx = 0;
             constraints.gridy = 1;
             constraints.fill = GridBagConstraints.BOTH;
