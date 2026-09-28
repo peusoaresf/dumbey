@@ -3,10 +3,7 @@ package gui;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import javax.swing.JToggleButton;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 import tools.base.ToolSlot;
@@ -51,7 +48,7 @@ public class ToolsBar extends JPanel {
         );
     }
 
-    private static class LatchButton extends JToggleButton {
+    private static class LatchButton extends JCheckBox {
         public LatchButton(String title) {
             super(title);
         }
