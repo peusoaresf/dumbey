@@ -1,11 +1,11 @@
 package gui;
 
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.function.Consumer;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class GUI extends JFrame {
 
@@ -17,11 +17,15 @@ public class GUI extends JFrame {
         super("Dumbey");
 
         this.setSize(1024, 768);
-        this.setLayout(new GridLayout(2, 1));
-
         this.setJMenuBar(menuBar);
-        this.add(messagesContainer);
-        this.add(promptContainer);
+
+        this.add(
+            mainView(
+                messagesContainer,
+                promptContainer,
+                new JPanel()
+            )
+        );
 
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -32,6 +36,29 @@ public class GUI extends JFrame {
         });
 
         this.setVisible(true);
+    }
+
+    private Component mainView(Component mainSlot, Component bottomSlot, Component sideSlot) {
+        var verticalContainer = new JSplitPane(
+            JSplitPane.VERTICAL_SPLIT,
+            mainSlot,
+            bottomSlot
+        );
+
+        verticalContainer.setOneTouchExpandable(true);
+        verticalContainer.setMinimumSize(new Dimension(0,0));
+        verticalContainer.setDividerLocation((int)(this.getHeight() * 0.6));
+
+        var horizontalContainer = new JSplitPane(
+            JSplitPane.HORIZONTAL_SPLIT,
+            verticalContainer,
+            sideSlot
+        );
+
+        horizontalContainer.setOneTouchExpandable(true);
+        horizontalContainer.setDividerLocation((int)(this.getWidth() * 0.75));
+
+        return horizontalContainer;
     }
 
     public void setProcessing(boolean isProcessing) {
