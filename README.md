@@ -25,4 +25,6 @@ Eventually, after getting to the end of the challenge and having the agent do so
 
 The following is a diagram detailing the composition of views / components in the app's UI (`gui` package). It helps to get acquainted with it before diving into the code:
 
-![UI components diagram](docs/ui-layout.png)
+![UI components diagram](docs/ui-layout.excalidraw.png)
+
+_Ps.: the file `docs/ui-layout.excalidraw.png` embeds excalidraw metadata, ie, you can open and make updates directly to it._
