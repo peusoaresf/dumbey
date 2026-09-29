@@ -14,7 +14,7 @@ public class GUI extends JFrame {
 
     private final MessagesContainer messagesContainer = new MessagesContainer();
     private final PromptContainer promptContainer = new PromptContainer();
-    private final SidePanel sidePanel = new SidePanel();
+    private final Dock dock = new Dock();
 
     public GUI() {
         super("Dumbey");
@@ -25,7 +25,7 @@ public class GUI extends JFrame {
             mainView(
                 messagesContainer,
                 promptContainer,
-                sidePanel
+                dock
             )
         );
 
