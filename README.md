@@ -4,12 +4,14 @@ Repo born from the ["Build Your own Claude Code"](https://codecrafters.io/challe
 
 Eventually, after getting to the end of the challenge and having the agent do some basic things over CLI commands, I decided (for some god knows why reason) to add a Swing UI interface to it (maybe I felt nostalgic for having worked with it back in 2015-2017).
 
-## Dependencies
+## Quick Start
+
+### Dependencies
 
 - [Make](https://www.gnu.org/software/make/)
 - [Java SDK (v25)](https://sdkman.io/)
 
-## Quick Start
+### Running Locally
 
 1. Create a copy of `.env.example` and call it `.env`
 
@@ -18,3 +20,9 @@ Eventually, after getting to the end of the challenge and having the agent do so
 3. Run `make run`
 
 4. Play around with.. an LLM agent of sorts!
+
+## UI Layout
+
+The following is a diagram detailing the composition of views / components in the app's UI (`gui` package). It helps to get acquainted with it before diving into the code:
+
+![UI components diagram](docs/ui-layout.png)
