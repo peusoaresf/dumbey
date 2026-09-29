@@ -12,8 +12,7 @@ public abstract class DockView extends JPanel {
         );
     }
 
-    // TODO: need a new name, this conflicts with swing
-    public String getName() {
+    public String getIdentifier() {
         return getClass().getSimpleName();
     }
 }
