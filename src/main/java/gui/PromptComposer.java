@@ -12,14 +12,14 @@ import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class PromptContainer extends JPanel {
+public class PromptComposer extends JPanel {
     private boolean isProcessing = false;
 
     private final ToolsBar toolsBar = new ToolsBar();
     private final PromptArea textArea = new PromptArea();
     private final SubmitButton button = new SubmitButton();
 
-    public PromptContainer() {
+    public PromptComposer() {
         this.setLayout(new GridBagLayout());
 
         button.setEnabled(false);

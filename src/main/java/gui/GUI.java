@@ -12,8 +12,8 @@ import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 public class GUI extends JFrame {
 
-    private final MessagesContainer messagesContainer = new MessagesContainer();
-    private final PromptContainer promptContainer = new PromptContainer();
+    private final ChatTranscript chatTranscript = new ChatTranscript();
+    private final PromptComposer promptComposer = new PromptComposer();
     private final Dock dock = new Dock();
 
     public GUI() {
@@ -23,8 +23,8 @@ public class GUI extends JFrame {
 
         this.add(
             mainView(
-                messagesContainer,
-                promptContainer,
+                chatTranscript,
+                promptComposer,
                 dock
             )
         );
@@ -88,20 +88,20 @@ public class GUI extends JFrame {
     }
 
     public void setProcessing(boolean isProcessing) {
-        promptContainer.setProcessing(isProcessing);
+        promptComposer.setProcessing(isProcessing);
     }
 
     public void addError(String error) {
-        this.messagesContainer.addError(error);
+        this.chatTranscript.addError(error);
     }
 
     public void addAgentReply(String reply) {
-        this.messagesContainer.addAgentReply(reply);
+        this.chatTranscript.addAgentReply(reply);
     }
 
     public void setOnPromptSubmitted(Consumer<String> handler) {
-        promptContainer.setOnPromptSubmitted(prompt -> {
-            messagesContainer.addUserPrompt(prompt);
+        promptComposer.setOnPromptSubmitted(prompt -> {
+            chatTranscript.addUserPrompt(prompt);
 
             handler.accept(prompt);
         });
