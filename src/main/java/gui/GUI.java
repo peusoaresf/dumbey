@@ -6,11 +6,15 @@ import java.awt.event.WindowEvent;
 import java.util.function.Consumer;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicSplitPaneDivider;
+import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 public class GUI extends JFrame {
 
     private final MessagesContainer messagesContainer = new MessagesContainer();
     private final PromptContainer promptContainer = new PromptContainer();
+    private final Dock dock = new Dock();
 
     public GUI() {
         super("Dumbey");
@@ -21,7 +25,7 @@ public class GUI extends JFrame {
             mainView(
                 messagesContainer,
                 promptContainer,
-                new JPanel()
+                dock
             )
         );
 
@@ -43,9 +47,11 @@ public class GUI extends JFrame {
             bottomSlot
         );
 
+        setDividerToWhite(verticalContainer);
         verticalContainer.setOneTouchExpandable(true);
         verticalContainer.setMinimumSize(new Dimension(0,0));
         verticalContainer.setDividerLocation((int)(this.getHeight() * 0.6));
+        verticalContainer.setResizeWeight(0.6);
 
         var horizontalContainer = new JSplitPane(
             JSplitPane.HORIZONTAL_SPLIT,
@@ -53,10 +59,32 @@ public class GUI extends JFrame {
             sideSlot
         );
 
+        setDividerToWhite(horizontalContainer);
         horizontalContainer.setOneTouchExpandable(true);
         horizontalContainer.setDividerLocation((int)(this.getWidth() * 0.75));
+        horizontalContainer.setResizeWeight(0.75);
 
         return horizontalContainer;
+    }
+
+    private void setDividerToWhite(JSplitPane pane) {
+        var customUI = new BasicSplitPaneUI() {
+            @Override
+            public BasicSplitPaneDivider createDefaultDivider() {
+                return new BasicSplitPaneDivider(this) {
+                    public void setBorder(Border b) {}
+
+                    @Override
+                    public void paint(Graphics g) {
+                        g.setColor(Color.WHITE);
+                        g.fillRect(0, 0, getSize().width, getSize().height);
+                        super.paint(g);
+                    }
+                };
+            }
+        };
+
+        pane.setUI(customUI);
     }
 
     public void setProcessing(boolean isProcessing) {
